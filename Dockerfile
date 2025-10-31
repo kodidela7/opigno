@@ -1,11 +1,11 @@
 # Use official PHP + Apache image
 FROM php:8.2-apache
 
-# Install system dependencies and PHP extensions
+# Install required system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
-    libpng-dev libjpeg-dev libfreetype6-dev git unzip curl \
+    libpng-dev libjpeg-dev libfreetype6-dev libzip-dev zip git unzip curl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql opcache bcmath
+    && docker-php-ext-install gd pdo pdo_mysql opcache bcmath zip
 
 # Enable Apache rewrite (needed for Drupal/Opigno)
 RUN a2enmod rewrite
@@ -20,7 +20,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose Render port
+# Expose Render’s dynamic port
 EXPOSE 10000
 
 # Start PHP built-in server
