@@ -9,12 +9,12 @@ services:
       php -S 0.0.0.0:$PORT -t web
     envVars:
       - key: DB_HOST
-        value: srv123.hostinger.com
+        value: 82.25.121.2
       - key: DB_NAME
-        value: opigno_db
+        value: u829141913_opigno_db
       - key: DB_USER
-        value: opigno_user
+        value: u829141913_opigno_user
       - key: DB_PASS
-        value: StrongPassword123
+        value: U829141913_opigno_user
       - key: DB_PORT
         value: 3306
